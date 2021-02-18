@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <input type="text" id="output-screen" readonly />
+        <button class="text-color" onclick="allClear()">C</button>
+        <button class="text-color" onclick="del()">DEL</button>
+        <button class="text-color" onclick="display('%')">%</button>
+        <button class="text-color" onclick="display('/')">/</button>
+        <button onclick="display(7)">7</button>
+        <button onclick="display(8)">8</button>
+        <button onclick="display(9)">9</button>
+        <button class="text-color" onclick="display('*')">x</button>
+        <button onclick="display(4)">4</button>
+        <button onclick="display(5)">5</button>
+        <button onclick="display(6)">6</button>
+        <button class="text-color" onclick="display('-')">-</button>
+        <button onclick="display(1)">1</button>
+        <button onclick="display(2)">2</button>
+        <button onclick="display(3)">3</button>
+        <button class="text-color" onclick="display('+')">+</button>
+        <button onclick="display('.')">.</button>
+        <button onclick="display(0)">0</button>
+        <button class="equal-to" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Patrick Hand", cursive;
+        box-sizing: border-box;
+        outline: none;
+        background-color: #b49dab;
+      }
+
+      :root {
+        --white-color: #f5e3f0;
+        --violet-color: #b39dab;
+      }
+
+      .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .calculator {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: repeat(5);
+        border-radius: 20px;
+        background-color: var(--white-color);
+        box-shadow: 0 0 20px #8f7587;
+        border: 5px double #d4b5cb;
+      }
+
+      #output-screen {
+        height: 125px;
+        width: 285px;
+        padding: 15px;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 35px;
+        grid-column: span 4;
+        font-size: 53px;
+        letter-spacing: 3px;
+        font-weight: bold;
+        text-align: end;
+        background-color: var(--white-color);
+        border: 5px double #d4b5cb;
+        border-radius: 20px;
+        box-shadow: 0 0 10px #be9eb4, inset -4px -4px 10px #b8a3b2,
+          inset 4px 4px 10px #b8a3b2;
+        color: #33137e;
+      }
+
+      button {
+        height: 60px;
+        width: 60px;
+        margin: 5px;
+        font-size: 32px;
+        font-weight: bold;
+        background-color: var(--white-color);
+        border-radius: 50%;
+        box-shadow: -5px -5px 12px #ffffff, 5px 5px 12px rgba(0, 0, 0, 0.16);
+        border: 1px solid #ecd9e7;
+      }
+
+      .equal-to {
+        width: 140px;
+        border-radius: 30px;
+        background-color: var(--violet-color);
+        color: #f5e3f0;
+      }
+
+      .text-color {
+        color: var(--violet-color);
+      }
+    </style>
+    <script>
+      let outputScreen;
+      function display(num) {
+        outputScreen = document.getElementById("output-screen");
+        outputScreen.value += num;
+      }
+
+      function calculate() {
+        try {
+          outputScreen.value = eval(outputScreen.value);
+        } catch (err) {
+          alert("Invalid equation!");
+        }
+      }
+
+      function allClear() {
+        outputScreen.value = "";
+      }
+
+      function del() {
+        outputScreen.value = outputScreen.value.slice(0, -1);
+      }
+    </script>
+  </body>
+</html>
